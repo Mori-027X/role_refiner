@@ -1,5 +1,5 @@
 name: astrbot_plugin_role_refiner
-author: AstrBot Developer
+author: Azurefin
 description: 在LLM生成回复后，根据角色设定提示词对回复进行二次润色，提升角色扮演的一致性和表现力。
-version: 1.0.0
-repo: https://github.com/your_username/astrbot_plugin_role_refiner
+version: 1.0.1
+repo: https://github.com/Mori-027X/role_refiner
