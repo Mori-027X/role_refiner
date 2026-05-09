@@ -1,0 +1,28 @@
+{
+  "enable_auto_refinement": {
+    "description": "是否启用自动润色功能。启用后，每次LLM回复将自动根据角色提示词进行二次润色。",
+    "type": "bool",
+    "hint": "禁用后，自动润色将停止，但手动润色命令仍然可用。",
+    "default": true
+  },
+  "refine_temperature": {
+    "description": "润色时使用的LLM温度参数",
+    "type": "float",
+    "hint": "控制润色过程的创造性，取值范围0-2。较高的值会使润色更随机。",
+    "default": 0.7
+  },
+  "refine_max_tokens": {
+    "description": "润色回复的最大生成token数",
+    "type": "int",
+    "hint": "限制润色后回复的长度，防止输出过长。",
+    "default": 500
+  },
+  "refine_system_prompt_template": {
+    "description": "润色时使用的系统提示词模板",
+    "type": "text",
+    "hint": "可使用 {role_prompt} 和 {original_reply} 作为占位符。{role_prompt} 将是对话中设置的角色提示词，{original_reply} 是LLM的原始回复。",
+    "default": "你是一个专业的角色扮演润色助手。请根据以下角色设定，对回复进行风格和语气润色，严格保持原意不变。角色设定：{role_prompt}\n\n原始回复：{original_reply}\n\n润色后的回复：",
+    "editor_mode": true,
+    "editor_language": "text"
+  }
+}
