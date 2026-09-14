@@ -5,23 +5,35 @@
     "hint": "禁用后，自动润色将停止，但手动润色命令仍然可用。",
     "default": true
   },
+  "auto_capture_system_prompt": {
+    "description": "是否自动捕获对话的 system_prompt 作为润色提示词的后备来源。",
+    "type": "bool",
+    "hint": "开启后，如果未手动设置 /role_prompt，将自动使用当前会话的 system_prompt 作为角色设定。",
+    "default": true
+  },
+  "refine_provider_id": {
+    "description": "润色时使用的模型 Provider ID（留空则使用当前对话模型）。",
+    "type": "string",
+    "hint": "建议指定一个与生成模型不同的 Provider，避免模型润色自己的输出时越改越助手腔。留空则复用当前对话模型。",
+    "default": ""
+  },
   "refine_temperature": {
     "description": "润色时使用的LLM温度参数",
     "type": "float",
-    "hint": "控制润色过程的创造性，取值范围0-2。较高的值会使润色更随机。",
-    "default": 0.7
+    "hint": "控制润色过程的创造性，取值范围0-2。较高值更随机。润色任务建议 0.3-0.7。",
+    "default": 0.5
   },
   "refine_max_tokens": {
     "description": "润色回复的最大生成token数",
     "type": "int",
-    "hint": "限制润色后回复的长度，防止输出过长。",
-    "default": 500
+    "hint": "限制润色后回复的长度，防止输出过长。润色任务建议 100-300。",
+    "default": 200
   },
   "refine_system_prompt_template": {
     "description": "润色时使用的系统提示词模板",
     "type": "text",
-    "hint": "可使用 {role_prompt} 和 {original_reply} 作为占位符。{role_prompt} 将是对话中设置的角色提示词，{original_reply} 是LLM的原始回复。",
-    "default": "你是一个专业的角色扮演润色助手。请根据以下角色设定，对回复进行风格和语气润色，严格保持原意不变。角色设定：{role_prompt}\n\n原始回复：{original_reply}\n\n润色后的回复：",
+    "hint": "可使用 {role_prompt}、{original_reply}、{user_message} 作为占位符。{role_prompt} 是角色设定，{original_reply} 是LLM原始回复，{user_message} 是用户最近一条消息。",
+    "default": "把下面这段机器人回复改写成真人微信聊天的语气。\n\n## 输出要求\n只输出改写后的那句话。不要解释，不要加前缀后缀，不要用引号包裹。\n\n## 改写原则\n1. 最多一句话，最好 15 字以内。\n2. 最多一个问号。如果原文有多个问题，只留最自然的一个。\n3. 不要复述用户刚说的话。用户说的自己知道。\n4. 不要总结用户说的内容。\n5. 不要用总结腔开头：总的来说、所以、因此、首先、其次、听起来。\n6. 不要用客服式结尾：有什么需要、建议你、希望能帮到、可以告诉我。\n7. 允许省略主语、不完整句、语气词（啊、吧、呢、嘛）。\n8. 不要新增原文没有的信息。\n9. 如果原文已经很自然，直接原样输出。\n\n## 示例\n用户：还没有，家里好像没米了\n原回复：确实，没米这个时机挑得真准。那中午打算怎么对付，叫外卖还是出去随便找点？我这边也还饿着，早上光顾着发呆忘了正经吃。\n改写：那你中午吃啥\n\n用户：消灭剩菜剩饭应该够了，下午去一趟超市。\n原回复：剩菜凑一顿，下午顺便买米。你逛超市会列清单吗，还是随手拿？\n改写：那你下午顺便买米？\n\n用户：今天加班到十点，累死了\n原回复：听起来你今天挺累的，要注意休息，有什么需要可以告诉我。\n改写：那你早点睡\n\n## 角色设定（只用来判断语气，不要照搬设定文字）\n{role_prompt}\n\n## 用户刚说\n{user_message}\n\n## 机器人原回复\n{original_reply}\n\n## 改写后（只输出一句）",
     "editor_mode": true,
     "editor_language": "text"
   }
