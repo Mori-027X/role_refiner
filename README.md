@@ -4,7 +4,7 @@
 
 **把 AI 腔的回复，改写成真人说话的样子**
 
-![version](https://img.shields.io/badge/version-1.0.1-blue?style=flat-square)
+![version](https://img.shields.io/badge/version-1.1.0-blue?style=flat-square)
 ![astrbot](https://img.shields.io/badge/AstrBot-%E2%89%A5%204.9.2-4b6bfb?style=flat-square)
 ![author](https://img.shields.io/badge/author-Azurefin-2ea44f?style=flat-square)
 
